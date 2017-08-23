@@ -51,9 +51,9 @@
 	<!-- 数据源动态切换AOP切面 -->
 	<bean id="dataSourceAspect" class="org.wjh.common.datasource.DataSourceAspect" />
 	<aop:config>
-		<aop:aspect id="c" ref="dataSourceAspect">
-			<aop:pointcut id="dataSourceBeofre" expression="execution(* org.wjh.dao..*.*(..))" />
-			<aop:before method="before" pointcut-ref="dataSourceBeofre"/>
+		<aop:aspect id="aspect" ref="dataSourceAspect">
+			<aop:pointcut id="dataSourcePointCut" expression="execution(* org.wjh.dao..*.*(..))" />
+			<aop:before method="before" pointcut-ref="dataSourcePointCut"/>
 		</aop:aspect>
 	</aop:config>
 	<!-- 事务管理器 -->
