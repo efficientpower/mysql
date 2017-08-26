@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<mappers>
-		<mapper resource="mappings/mybatis-user.xml"/>
+		<mapper resource="mappings/mybatis-user.xml" />
 	</mappers>
 </configuration>
 
