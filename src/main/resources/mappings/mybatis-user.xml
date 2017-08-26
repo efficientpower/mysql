@@ -11,39 +11,55 @@
 	<sql id="Base_Column_List">
 		id, user_id, name, db_create_time, db_update_time
 	</sql>
-	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="getById" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from user where id=#{id, jdbcType=INTEGER}
 	</select>
-	<select id="getByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<select id="getByIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user where id in
+		<foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+			#{item, jdbcType=INTEGER}
+		</foreach>
+	</select>
+	<select id="getByUserId" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from user where user_id = #{userId,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteById" parameterType="java.lang.Integer">
+	<select id="getByUserIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user where user_id in
+		<foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+			#{item, jdbcType=VARCHAR}
+		</foreach>
+	</select>
+	<delete id="deleteById">
 		delete from user where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<delete id="deleteByUserId" parameterType="java.lang.String">
+	<delete id="deleteByUserId">
 		delete from user user_id = #{userId,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insert" useGeneratedKeys="true" parameterType="org.wjh.domain.User">
-	    <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="Integer">
-	       select last_insert_id()
-	    </selectKey>
+	<insert id="insert" parameterType="org.wjh.domain.User" useGeneratedKeys="true">
+		<selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="Integer">
+			select last_insert_id()
+		</selectKey>
 		insert into user (user_id, name, db_create_time, db_update_time)
 		values
 		(
-			#{userId,jdbcType=VARCHAR}, 
-			#{name,jdbcType=VARCHAR},
-			#{dbCreateTime,jdbcType=TIMESTAMP},
-			#{dbUpdateTime,jdbcType=TIMESTAMP}
+		#{userId,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{dbCreateTime,jdbcType=TIMESTAMP},
+		#{dbUpdateTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	<insert id="insertSelective" useGeneratedKeys="true" parameterType="org.wjh.domain.User">
-	    <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="Integer">
-           select last_insert_id()
-        </selectKey>
+		<selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="Integer">
+			select last_insert_id()
+		</selectKey>
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="userId != null">
@@ -74,13 +90,25 @@
 			</if>
 		</trim>
 	</insert>
+	<insert id="batchInsert" parameterType="java.util.List">
+		insert into user (user_id, name, db_create_time, db_update_time)
+		values
+		<foreach collection="list" index="index" item="item" separator=",">
+			(
+			#{item.userId,jdbcType=VARCHAR},
+			#{item.name,jdbcType=VARCHAR},
+			#{item.dbCreateTime,jdbcType=TIMESTAMP},
+			#{item.dbUpdateTime,jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
 	<update id="update" parameterType="org.wjh.domain.User">
-        update user
-        set name = #{name,jdbcType=VARCHAR},
-        db_create_time = #{dbCreateTime,jdbcType=TIMESTAMP},
-        db_update_time = #{dbUpdateTime,jdbcType=TIMESTAMP}
-        where user_id = #{userId,jdbcType=VARCHAR}
-    </update>
+		update user
+		set name = #{name,jdbcType=VARCHAR},
+		db_create_time = #{dbCreateTime,jdbcType=TIMESTAMP},
+		db_update_time = #{dbUpdateTime,jdbcType=TIMESTAMP}
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
 	<update id="updateSelective" parameterType="org.wjh.domain.User">
 		update user
 		<set>
@@ -96,6 +124,15 @@
 		</set>
 		where user_id = #{userId,jdbcType=VARCHAR}
 	</update>
+	<update id="batchUpdate" parameterType="java.util.List">
+		<foreach collection="list" index="index" item="item" separator=";">
+			update user set
+			name = #{item.name,jdbcType=VARCHAR},
+			db_create_time = #{item.dbCreateTime,jdbcType=TIMESTAMP},
+			db_update_time = #{item.dbUpdateTime,jdbcType=TIMESTAMP}
+			where user_id = #{item.userId,jdbcType=VARCHAR}
+		</foreach>
+	</update>
 	<select id="list" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
@@ -103,6 +140,6 @@
 		<if test="orderBy != null">
 			order by ${orderBy}
 		</if>
-		limit #{offset}, #{size}
+		limit #{offset, jdbcType=INTEGER}, #{size, jdbcType=INTEGER}
 	</select>
 </mapper>

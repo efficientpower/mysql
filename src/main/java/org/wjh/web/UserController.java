@@ -22,6 +22,7 @@ public class UserController {
     public AjaxResult<Object> getUser(String userId) {
         AjaxResult<Object> res = new AjaxResult<Object>();
         try{
+            User user = userService.getByUserId(userId);
             userService.updateInTrans(userId);
             List<User> userList = userService.list("id desc ", 0, 3);
             res.setData(userList);
