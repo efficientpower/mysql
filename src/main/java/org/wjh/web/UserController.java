@@ -1,5 +1,6 @@
 package org.wjh.web;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,8 @@ public class UserController {
     public AjaxResult<Object> getUser(String userId) {
         AjaxResult<Object> res = new AjaxResult<Object>();
         try{
-            User user = userService.getByUserId(userId);
-            userService.updateInTrans(userId);
-            List<User> userList = userService.list("id desc ", 0, 3);
+            Integer[] ids = {4,3,2,1};
+            List<User> userList = userService.getByIds(Arrays.asList(ids));
             res.setData(userList);
         }catch(Exception e){
             res.setCode(MobileCode.FAIL.getCode());

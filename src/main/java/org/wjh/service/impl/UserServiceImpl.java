@@ -31,6 +31,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void batchInsert(List<User> users) {
+        // TODO Auto-generated method stub
+        userDao.batchInsert(users);
+    }
+
+    @Override
     public void update(User user) {
         // TODO Auto-generated method stub
         userDao.update(user);
@@ -43,9 +49,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void batchUpdate(List<User> users) {
+        // TODO Auto-generated method stub
+        userDao.batchUpdate(users);
+    }
+
+    @Override
     public User getById(Integer id) {
         // TODO Auto-generated method stub
         return userDao.getById(id);
+    }
+
+    @Override
+    public List<User> getByIds(List<Integer> ids) {
+        // TODO Auto-generated method stub
+        return userDao.getByIds(ids);
     }
 
     @Override
@@ -55,12 +73,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getByUserIds(List<String> userIds) {
+        // TODO Auto-generated method stub
+        return userDao.getByUserIds(userIds);
+    }
+
+    @Override
     public List<User> list(String orderBy, Integer offset, Integer size) {
         // TODO Auto-generated method stub
         return userDao.list(orderBy, offset, size);
     }
 
-    @Transactional(rollbackFor=Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void updateInTrans(String userId) {
         // TODO Auto-generated method stub

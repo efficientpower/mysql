@@ -31,13 +31,13 @@ public interface UserDao {
     public User getById(Integer id);
 
     @DataSource(DataSourceConstant.SLAVE)
-    public User getByIds(List<Integer> id);
-    
+    public List<User> getByIds(List<Integer> id);
+
     @DataSource(DataSourceConstant.SLAVE)
     public User getByUserId(String userId);
-    
+
     @DataSource(DataSourceConstant.SLAVE)
-    public User getByUserIds(List<String> userId);
+    public List<User> getByUserIds(List<String> userId);
 
     @DataSource(DataSourceConstant.SLAVE)
     public List<User> list(@Param("orderBy") String orderBy, @Param("offset") Integer offset, @Param("size") Integer size);
