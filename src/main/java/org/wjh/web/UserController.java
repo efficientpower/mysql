@@ -26,7 +26,7 @@ public class UserController{
     public AjaxResult<Object> getUser(String userId) {
         AjaxResult<Object> res = new AjaxResult<Object>();
         try {
-            List<User> userList = userService.list(" id ", 0, 3000);
+            List<User> userList = userService.list(" id ", 0, 10);
             userService.updateInTrans(userList.get(0).getUserId());
             res.setData(userList);
         } catch (Exception e) {
