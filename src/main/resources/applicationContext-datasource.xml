@@ -52,7 +52,7 @@
 	<bean id="dataSourceAspect" class="org.wjh.common.datasource.DataSourceAspect" />
 	<aop:config>
 		<aop:aspect id="aspect" ref="dataSourceAspect">
-			<aop:pointcut id="dataSourcePointCut" expression="execution(* org.wjh.dao..*.*(..))" />
+			<aop:pointcut id="dataSourcePointCut" expression="execution(* org.wjh..dao..*.*(..))" />
 			<aop:before method="before" pointcut-ref="dataSourcePointCut"/>
 		</aop:aspect>
 	</aop:config>

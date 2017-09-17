@@ -170,7 +170,7 @@
 	<update id="updateSelective" parameterType="org.wjh.domain.User">
 		update user
 		<set>
-            <if test="password != null and type != '' ">
+            <if test="password != null and password != '' ">
               password = #{password,jdbcType=VARCHAR},
             </if>
             <if test="salt != null and salt !='' ">
