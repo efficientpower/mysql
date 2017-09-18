@@ -1,8 +1,8 @@
-package org.wjh.service;
+package org.wjh.mysql.service;
 
 import java.util.List;
 
-import org.wjh.domain.User;
+import org.wjh.mysql.domain.User;
 
 public interface UserService {
 

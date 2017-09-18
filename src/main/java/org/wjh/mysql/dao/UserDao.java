@@ -1,11 +1,11 @@
-package org.wjh.dao;
+package org.wjh.mysql.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.wjh.common.datasource.DataSource;
-import org.wjh.common.datasource.DataSourceConstant;
-import org.wjh.domain.User;
+import org.wjh.mysql.common.datasource.DataSource;
+import org.wjh.mysql.common.datasource.DataSourceConstant;
+import org.wjh.mysql.domain.User;
 
 public interface UserDao {
 

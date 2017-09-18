@@ -1,4 +1,4 @@
-package org.wjh.common.datasource;
+package org.wjh.mysql.common.datasource;
 
 public class DataSourceConstant {
     public static final String MASTER = "master";

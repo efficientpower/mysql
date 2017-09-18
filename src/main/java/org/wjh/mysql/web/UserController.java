@@ -1,4 +1,4 @@
-package org.wjh.web;
+package org.wjh.mysql.web;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.wjh.common.AjaxResult;
-import org.wjh.common.MobileCode;
-import org.wjh.domain.User;
-import org.wjh.service.UserService;
+import org.wjh.mysql.common.AjaxResult;
+import org.wjh.mysql.common.MobileCode;
+import org.wjh.mysql.domain.User;
+import org.wjh.mysql.service.UserService;
 
 @Controller
 public class UserController{

@@ -1,4 +1,4 @@
-package org.wjh.common.datasource;
+package org.wjh.mysql.common.datasource;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package org.wjh.common.datasource;
+package org.wjh.mysql.common.datasource;
 
 public class DynamicDataSourceHolder {
     public static ThreadLocal<String> holder = new ThreadLocal<String>();

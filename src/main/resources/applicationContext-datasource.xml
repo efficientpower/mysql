@@ -39,7 +39,7 @@
 		<property name="validationQuery" value="select 1;" />
 	</bean>
 	<!-- 动态数据源,通过key-value关联数据源 -->
-	<bean id="dynamicDataSource" class="org.wjh.common.datasource.DynamicDataSource">
+	<bean id="dynamicDataSource" class="org.wjh.mysql.common.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map>
 				<entry key="master" value-ref="dataSourceW"/>
@@ -49,12 +49,12 @@
 		<property name="defaultTargetDataSource" ref="dataSourceW" />
 	</bean>
 	<!-- 数据源动态切换AOP切面 -->
-	<bean id="dataSourceAspect" class="org.wjh.common.datasource.DataSourceAspect" />
+	<bean id="dataSourceAspect" class="org.wjh.mysql.common.datasource.DataSourceAspect" />
 	<aop:config>
 		<aop:aspect id="aspect" ref="dataSourceAspect">
-			<aop:pointcut id="dataSourcePointCut" expression="execution(* org.wjh.dao..*.*(..))" />
+			<aop:pointcut id="dataSourcePointCut" expression="execution(public * org.wjh..*.dao..*.*(..))" />
 			<aop:before method="before" pointcut-ref="dataSourcePointCut"/>
-            <aop:pointcut id="beforeTxPointCut" expression="execution(public * org.wjh.service..*.*(..))" />
+            <aop:pointcut id="beforeTxPointCut" expression="execution(public * org.wjh..*.service..*.*(..))" />
             <aop:before method="beforeTx" pointcut-ref="beforeTxPointCut"/>
 		</aop:aspect>
 	</aop:config>

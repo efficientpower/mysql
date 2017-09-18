@@ -1,4 +1,4 @@
-package org.wjh.service.impl;
+package org.wjh.mysql.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.wjh.dao.UserDao;
-import org.wjh.domain.User;
-import org.wjh.service.UserService;
+import org.wjh.mysql.dao.UserDao;
+import org.wjh.mysql.domain.User;
+import org.wjh.mysql.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

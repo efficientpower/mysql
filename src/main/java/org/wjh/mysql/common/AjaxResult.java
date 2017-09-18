@@ -1,4 +1,4 @@
-package org.wjh.common;
+package org.wjh.mysql.common;
 
 import java.util.LinkedHashMap;
 

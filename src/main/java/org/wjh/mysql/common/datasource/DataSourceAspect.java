@@ -1,4 +1,4 @@
-package org.wjh.common.datasource;
+package org.wjh.mysql.common.datasource;
 
 import java.lang.reflect.Method;
 
