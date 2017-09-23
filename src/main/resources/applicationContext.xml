@@ -17,6 +17,8 @@
     </context:component-scan>
     <!-- 注解定时任务支持 -->
     <task:annotation-driven />
+    <!-- AspectJ AOP注解 -->
+    <aop:aspectj-autoproxy />
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
